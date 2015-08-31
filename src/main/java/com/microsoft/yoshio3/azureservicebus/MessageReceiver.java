@@ -74,7 +74,7 @@ class WatchQueueService implements Runnable {
         try {
             ReceiveMessageOptions opts = ReceiveMessageOptions.DEFAULT;
             opts.setReceiveMode(ReceiveMode.PEEK_LOCK);
-            // Service Bus の API がいけてない。
+            // Service Bus の API がいけてない。これなら普通に MQ製品いれて JMS/MDB を使う
             while (runFlag) {
                 ReceiveQueueMessageResult resultQM
                         = service.receiveQueueMessage(QUEUE_NAME, opts);
