@@ -7,7 +7,12 @@
     </h:head>
     <h:body>
         <br />
-        <h:link outcome="BlobStorageSample" value="Blob Storage サンプル" />
+        <h:link outcome="BlobStorageSample" value="Blob Storage サンプル" /><br/>
+
+        <h:form>
+            <h:commandButton value="キュー監視の開始" action="#{indexPage.execQueueStartButton()}"/><br/>
+            <h:commandButton value="キュー監視の停止" action="#{indexPage.execQueueStopButton()}"/>
+        </h:form>
     </h:body>
 </html>
 

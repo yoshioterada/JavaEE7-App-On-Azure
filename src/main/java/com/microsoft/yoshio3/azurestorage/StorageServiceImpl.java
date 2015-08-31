@@ -15,7 +15,6 @@ import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Spliterator;
-import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -29,15 +28,15 @@ import org.primefaces.model.UploadedFile;
  * @author Yoshio Terada
  */
 @Dependent
-public class StorageServiceImpl implements Serializable{
+public class StorageServiceImpl implements Serializable {
 
     private static final Logger logger = Logger.getLogger(StorageServiceImpl.class.getName());
 
     // Azure Storage サービスに接続するためのキー
     private final static String storageConnectionString
             = "DefaultEndpointsProtocol=https;"
-            + "AccountName=yoshio3storage;"
-            + "AccountKey=gtBNpjvTzaAXhib2MTpPw+o3AR0HI+rvCxE51NA1Cv9FPJYmH+GkNjMKraK7DP6TsH8Iu05PmBNCpfLJdykczA==";
+            + "AccountName=**************;"
+            + "AccountKey=****************************************************************************************";
 
     private CloudBlobClient blobClient;
 
@@ -128,23 +127,24 @@ public class StorageServiceImpl implements Serializable{
         try {
             CloudBlobContainer container = blobClient.getContainerReference(containerName);
             Iterable<ListBlobItem> items = container.listBlobs();
-            items.forEach((ListBlobItem item) -> {
-                if (item instanceof CloudBlob) {
-                    try {
-                        CloudBlob blob = (CloudBlob) item;
-                        String name = blob.getName();
-                        
-                        CloudBlockBlob delFile;
-                        delFile = container.getBlockBlobReference(name);
-                        // Delete the blob.
-                        delFile.deleteIfExists();
-                    } catch (URISyntaxException | StorageException ex) {
-                        logger.log(Level.SEVERE, null, ex);
-                    }
+            Spliterator<ListBlobItem> spliterator = items.spliterator();
+            Stream<ListBlobItem> stream = StreamSupport.stream(spliterator, false);
 
-                }
-            });
+            stream
+                    .filter(item -> item instanceof CloudBlob)
+                    .map(item -> (CloudBlob)item)
+                    .forEach(blob -> {
+                        try {
+                            String name = blob.getName();
 
+                            CloudBlockBlob delFile;
+                            delFile = container.getBlockBlobReference(name);
+                            // Delete the blob.
+                            delFile.deleteIfExists();
+                        } catch (URISyntaxException | StorageException ex) {
+                            logger.log(Level.SEVERE, null, ex);
+                        }
+                    });
         } catch (URISyntaxException | StorageException ex) {
             Logger.getLogger(StorageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }

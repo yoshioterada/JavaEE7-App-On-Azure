@@ -1,3 +1,10 @@
+com/microsoft/yoshio3/azureservicebus/WatchQueueService.class
+com/microsoft/yoshio3/azureservicebus/AMQPSender.class
+com/microsoft/yoshio3/azureservicebus/AzureQueueServiceImpl.class
+com/microsoft/yoshio3/azureservicebus/ObservableMessageReceiver.class
+com/microsoft/yoshio3/azureservicebus/MessageReceiver.class
 com/microsoft/yoshio3/azurestorage/BlobEntity.class
 com/microsoft/yoshio3/azurestorage/StorageServiceImpl.class
+com/microsoft/yoshio3/azureinsight/ApplicationInsightImpl.class
 com/microsoft/yoshio3/FileUploadView.class
+com/microsoft/yoshio3/IndexView.class
