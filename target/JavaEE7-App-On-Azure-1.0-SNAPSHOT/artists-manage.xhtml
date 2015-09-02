@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>芸能人一覧管理</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form id="form">
+                <p:layout fullPage="true">                    
+                    <p:layoutUnit position="west" size="175" header="メニュー" collapsible="true">
+                        <p:menu>
+                            <p:submenu label="芸能人検索">
+                                <p:menuitem value="作成" action="createEmployee?faces-redirect=true" />
+                            </p:submenu>
+                        </p:menu>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <p:dataTable id="empTable" var="emp" 
+                                     value="#{indexManagedBean.model}" 
+                                     selectionMode="single"
+                                     selection="#{indexManagedBean.selectedEmployee}"
+                                     paginator="true" 
+                                     rows="20" lazy="true" 
+                                     paginatorPosition="bottom" 
+                                     style="width:800px;font-size:10px;" >
+                            <p:ajax event="rowSelect" listener="#{indexManagedBean.onRowSelect}" 
+                                    update=":form:rname,:form:rprefecture,:form:rcity,:form:raddress,:form:remail,:form:modify,:form:delete"/>
+                            <p:column headerText="ID">
+                                <h:outputText value="#{emp.empId}" />
+                            </p:column>
+
+                            <p:column headerText="名前" filterBy="#{emp.name}">
+                                <h:outputText value="#{emp.name}" />
+                            </p:column>
+
+                            <p:column headerText="E-Mail">
+                                <h:outputText value="#{emp.email}" />
+                            </p:column>
+
+                        </p:dataTable>
+
+                        <p:outputLabel id="rname" value="#{indexManagedBean.selectedEmployee.name}"/><br/>
+                        <p:outputLabel id="rbirthDate" value="#{indexManagedBean.selectedEmployee.birthDate}"/><br/>
+                        <p:outputLabel id="rprefecture" value="#{indexManagedBean.selectedEmployee.prefecture}"/><br/>
+                        <p:outputLabel id="rcity" value="#{indexManagedBean.selectedEmployee.city}"/><br/>
+                        <p:outputLabel id="raddress" value="#{indexManagedBean.selectedEmployee.address}"/><br/>
+                        <p:outputLabel id="remail" value="#{indexManagedBean.selectedEmployee.email}"/><br/>
+                        <p:outputLabel id="rphoneNumber" value="#{indexManagedBean.selectedEmployee.phoneNumber}"/><br/>
+
+                        <p:commandButton id="modify" value="変更" action="#{indexManagedBean.modifyEmployee()}" />
+                        <p:commandButton id="delete" value="削除" action="#{indexManagedBean.deleteEmployee()}"/>
+
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>

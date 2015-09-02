@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>芸能人削除</title>
+            </f:facet>
+        </h:head>        
+
+        <h:body>
+            <f:metadata> 
+                <f:viewParam name="dummy"/>
+                <f:event type="preRenderView" listener="#{delete.onPageLoad}"/>        
+            </f:metadata>              
+
+            <h:form id="form">
+                <p:layout fullPage="true">
+
+                    <p:layoutUnit position="west" size="175" header="メニュー" collapsible="true">
+                        <p:menu>
+                            <p:submenu label="芸能人検索">
+                                <p:menuitem value="一覧" action="artists-manage?faces-redirect=true"/>
+                            </p:submenu>
+                        </p:menu>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel id="lid" value="ID"/>
+                            <p:inputText id="empId" value="#{delete.deleteEmpID}"/>
+
+                            <p:outputLabel id="lname" value="名前"/>
+                            <p:inputText disabled="true" id="name" value="#{delete.deleteEmp.name}"/>
+
+                            <p:outputLabel id="lbirthDate" value="生年月日"/>
+                            <p:calendar disabled="true"  id="birthDate" value="#{delete.deleteEmp.birthDate}" locale="ja" navigator="true" pattern="yyyy/MM/dd (EEE)" yearRange="-100:-0" />
+
+                            <p:outputLabel id="lprefecture" value="都道府県"/>
+                            <p:inputText disabled="true"  id="prefecture" value="#{delete.deleteEmp.prefecture}"/>
+
+                            <p:outputLabel id="lcity" value="区市町村"/>
+                            <p:inputText disabled="true"  id="city" value="#{delete.deleteEmp.city}"/>
+
+                            <p:outputLabel id="laddress" value="番地"/>
+                            <p:inputText disabled="true"  id="address" value="#{delete.deleteEmp.address}"/>
+
+                            <p:outputLabel id="lemail" value="メール"/>
+                            <p:inputText disabled="true"  id="email" value="#{delete.deleteEmp.email}"/>
+
+                            <p:outputLabel id="lphoneNumber" value="電話番号"/>
+                            <p:inputText disabled="true"   id="phoneNumber" value="#{delete.deleteEmp.phoneNumber}"/>
+                            <h:outputText id="display" />
+                        </h:panelGrid>
+
+
+                        <p:commandButton value="削除" action="#{delete.deleteEmployee()}"/>
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

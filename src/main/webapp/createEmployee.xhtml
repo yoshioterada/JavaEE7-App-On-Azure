@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+        <script type="text/javascript">
+            //
+            PrimeFaces.locales['ja'] = {
+                closeText: '閉じる',
+                prevText: '前',
+                nextText: '次',
+                monthNames: ['１月', '２月', '３月', '４月', '５月', '６月', '７月', '８月',
+                    '９月', '１０月', '１１月', '１２月'],
+                monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月',
+                    '9月', '10月', '11月', '12月'],
+                dayNames: ['日曜', '月曜', '火曜', '水曜', '木曜', '金曜', '土曜'],
+                dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+                dayNamesMin: ['日', '月', '火', '水', '木', '金', '土'],
+                weekHeader: '週',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: '時間のみ',
+                timeText: '時間',
+                hourText: '時',
+                minuteText: '分',
+                secondText: '秒',
+                currentText: '今日',
+                ampm: false,
+                month: '月',
+                week: '週',
+                day: '日',
+                allDayText: '全日'
+            };
+            //
+        </script>
+
+        <h:body>
+            <h:form id="form">
+                <p:layout fullPage="true">
+
+                    <p:layoutUnit position="west" size="175" header="メニュー" collapsible="true">
+                        <p:menu>
+                            <p:submenu label="芸能人検索">
+                                <p:menuitem value="一覧" action="artists-manage?faces-redirect=true"/>
+                            </p:submenu>
+                        </p:menu>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <h:panelGrid columns="2" cellpadding="5">
+
+
+
+                            <p:outputLabel id="lname" value="名前"/>
+                            <p:inputText id="name" value="#{create.name}"/>
+
+                            <p:outputLabel id="lbirthDate" value="生年月日"/>
+                            <p:calendar id="birthDate" value="#{create.birthDate}" locale="ja" navigator="true" pattern="yyyy/MM/dd (EEE)" yearRange="-100:-0" />
+
+                            <p:outputLabel id="lprefecture" value="都道府県"/>
+                            <p:selectOneMenu id="prefecture" value="#{create.prefecture}">
+                                <f:selectItem itemLabel="都道府県" itemValue="" />
+                                <f:selectItem itemLabel="北海道" itemValue="北海道" />
+                                <f:selectItem itemLabel="青森県" itemValue="青森県" />
+                                <f:selectItem itemLabel="岩手県" itemValue="岩手県" />
+                                <f:selectItem itemLabel="宮城県" itemValue="宮城県" />
+                                <f:selectItem itemLabel="秋田県" itemValue="秋田県" />
+                                <f:selectItem itemLabel="山形県" itemValue="山形県" />
+                                <f:selectItem itemLabel="福島県" itemValue="福島県" />
+                                <f:selectItem itemLabel="茨城県" itemValue="茨城県" />
+                                <f:selectItem itemLabel="栃木県" itemValue="栃木県" />
+                                <f:selectItem itemLabel="群馬県" itemValue="群馬県" />
+                                <f:selectItem itemLabel="埼玉県" itemValue="埼玉県" />
+                                <f:selectItem itemLabel="千葉県" itemValue="千葉県" />
+                                <f:selectItem itemLabel="東京都" itemValue="東京都" />
+                                <f:selectItem itemLabel="神奈川県" itemValue="神奈川県" />
+                                <f:selectItem itemLabel="新潟県" itemValue="新潟県" />
+                                <f:selectItem itemLabel="富山県" itemValue="富山県" />
+                                <f:selectItem itemLabel="石川県" itemValue="石川県" />
+                                <f:selectItem itemLabel="福井県" itemValue="福井県" />
+                                <f:selectItem itemLabel="山梨県" itemValue="山梨県" />
+                                <f:selectItem itemLabel="長野県" itemValue="長野県" />
+                                <f:selectItem itemLabel="岐阜県" itemValue="岐阜県" />
+                                <f:selectItem itemLabel="静岡県" itemValue="静岡県" />
+                                <f:selectItem itemLabel="愛知県" itemValue="愛知県" />
+                                <f:selectItem itemLabel="三重県" itemValue="三重県" />
+                                <f:selectItem itemLabel="滋賀県" itemValue="滋賀県" />
+                                <f:selectItem itemLabel="京都府" itemValue="京都府" />
+                                <f:selectItem itemLabel="大阪府" itemValue="大阪府" />
+                                <f:selectItem itemLabel="兵庫県" itemValue="兵庫県" />
+                                <f:selectItem itemLabel="奈良県" itemValue="奈良県" />
+                                <f:selectItem itemLabel="和歌山県" itemValue="和歌山県" />
+                                <f:selectItem itemLabel="鳥取県" itemValue="鳥取県" />
+                                <f:selectItem itemLabel="島根県" itemValue="島根県" />
+                                <f:selectItem itemLabel="岡山県" itemValue="岡山県" />
+                                <f:selectItem itemLabel="広島県" itemValue="広島県" />
+                                <f:selectItem itemLabel="山口県" itemValue="山口県" />
+                                <f:selectItem itemLabel="徳島県" itemValue="徳島県" />
+                                <f:selectItem itemLabel="香川県" itemValue="香川県" />
+                                <f:selectItem itemLabel="愛媛県" itemValue="愛媛県" />
+                                <f:selectItem itemLabel="高知県" itemValue="高知県" />
+                                <f:selectItem itemLabel="福岡県" itemValue="福岡県" />
+                                <f:selectItem itemLabel="佐賀県" itemValue="佐賀県" />
+                                <f:selectItem itemLabel="長崎県" itemValue="長崎県" />
+                                <f:selectItem itemLabel="熊本県" itemValue="熊本県" />
+                                <f:selectItem itemLabel="大分県" itemValue="大分県" />
+                                <f:selectItem itemLabel="宮崎県" itemValue="宮崎県" />
+                                <f:selectItem itemLabel="鹿児島県" itemValue="鹿児島県" />
+                                <f:selectItem itemLabel="沖縄県" itemValue="沖縄県" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel id="lcity" value="区市町村"/>
+                            <p:inputText id="city" value="#{create.city}"/>
+
+                            <p:outputLabel id="laddress" value="番地"/>
+                            <p:inputText id="address" value="#{create.address}"/>
+
+                            <p:outputLabel id="lemail" value="メール"/>
+                            <p:inputText id="email" value="#{create.email}"/>
+
+                            <p:outputLabel id="lphoneNumber" value="電話番号"/>
+                            <p:inputText id="phoneNumber" value="#{create.phoneNumber}"/>
+
+                            <p:outputLabel id="ldescription" value="備考"/>
+                            <p:inputTextarea rows="10" cols="50" counter="display" maxlength="80" counterTemplate="残り {0} 文字入力可能" autoResize="false" />
+                            <h:outputText id="display" />
+                        </h:panelGrid>
+
+                        <p:commandButton value="登録（登録確認）" action="#{create.confirmCreateEmployee()}"/>
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
