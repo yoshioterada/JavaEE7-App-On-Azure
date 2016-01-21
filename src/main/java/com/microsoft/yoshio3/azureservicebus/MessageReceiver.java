@@ -36,7 +36,7 @@ public class MessageReceiver {
                 = ServiceBusConfiguration.configureWithSASAuthentication(
                         "yoshio3-queue",
                         "RootManageSharedAccessKey",
-                        "wG7YotHIju+K6cfLhX9ydCFvqLec6p8TSqAAIfw1uY8=",
+                        "***********************************************",
                         ".servicebus.windows.net"
                 );
         service = ServiceBusService.create(config);
